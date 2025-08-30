@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Card</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* Back Button Styles */
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+            background: linear-gradient(135deg, #764ba2, #667eea);
+        }
+
+        .back-button svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        .portfolio-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            max-width: 900px;
+            width: 100%;
+            display: flex;
+            min-height: 400px;
+            transition: all 0.4s ease;
+            transform: translateY(0);
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .image-section {
+            flex: 1;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .portfolio-card:hover .image-section {
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 50%, #6a5acd 100%);
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid white;
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .portfolio-card:hover .profile-image {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .about-section {
+            flex: 1;
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: all 0.4s ease;
+        }
+
+        .portfolio-card:hover .about-section {
+            padding: 60px 45px;
+        }
+
+        .about-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 30px;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .portfolio-card:hover .about-title {
+            color: #667eea;
+            transform: translateX(5px);
+        }
+
+        .about-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 2px;
+            transition: all 0.4s ease;
+        }
+
+        .portfolio-card:hover .about-title::after {
+            width: 80px;
+            background: linear-gradient(135deg, #667eea, #6a5acd);
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #666;
+            text-align: justify;
+            margin-bottom: 30px;
+            transition: all 0.4s ease;
+        }
+
+        .portfolio-card:hover .about-text {
+            color: #555;
+            transform: translateX(3px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            justify-content: flex-start;
+            transition: all 0.4s ease;
+            flex-wrap: wrap;
+        }
+
+        .portfolio-card:hover .social-links {
+            transform: translateX(5px);
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .instagram {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        }
+
+        .whatsapp { background: #25D366; }
+
+        .linkedin {
+            background: #0077b5;
+        }
+
+        .social-link svg {
+            width: 22px;
+            height: 22px;
+            fill: white;
+        }
+
+        .certificate-btn {
+            background: #764ba2;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 5px; /* space below icons */
+        }
+
+        .certificate-btn:hover { 
+            background: #667eea; 
+            transform: translateY(-2px); 
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .back-button {
+                top: 15px;
+                left: 15px;
+                padding: 10px 20px;
+                font-size: 12px;
+            }
+
+            .back-button svg {
+                width: 14px;
+                height: 14px;
+            }
+
+            .portfolio-card {
+                flex-direction: column;
+                max-width: 500px;
+                margin-top: 60px;
+            }
+            
+            .image-section {
+                padding: 40px 20px;
+                min-height: 300px;
+            }
+            
+            .profile-image {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .about-section {
+                padding: 40px 30px;
+            }
+            
+            .about-title {
+                font-size: 2rem;
+                text-align: center;
+            }
+            
+            .about-title::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .social-links {
+                justify-content: center;
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Back to About Us Button -->
+    <button class="back-button" onclick="goToAboutUs()">
+        <svg viewBox="0 0 24 24">
+            <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+        </svg>
+        Back to About Us
+    </button>
+
+    <div class="portfolio-card">
+        <div class="image-section">
+            <img src="het-profile.jpg" alt="Profile Picture" class="profile-image">
+        </div>
+        
+        <div class="about-section">
+            <h2 class="about-title">About Me</h2>
+            <p class="about-text">
+                Hello! I’m Thakkar Het, a passionate UI/Ux who loves building modern, responsive, and user-friendly websites.
+                Currently, I’m pursuing my Diploma in Computer Engineering at Government Polytechnic, Ahmedabad.
+                <br><br>
+                With 2 years of experience and expertise in HTML, CSS, JavaScript, React, and Node.js, I focus on delivering clean code and creative digital solutions.
+                I’m always eager to learn new technologies and bring innovative ideas to life through modern web development practices.
+                <br><br>
+                UI/UX designer post in Tech Tribro.
+            </p>
+            
+            <div class="social-links">
+                <a href="https://instagram.com/thakker_het_007" target="_blank" class="social-link instagram" title="Instagram">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                </a>
+                
+                <a href="https://wa.me/+918849954610" target="_blank" class="social-link whatsapp" title="WhatsApp">
+          <svg viewBox="0 0 32 32"><path fill="white" d="M16 .667C7.636.667.667 7.636.667 16c0 2.836.739 5.593 2.145 8.02L.667 31.333 7.48 29.19A15.24 15.24 0 0 0 16 31.333C24.364 31.333 31.333 24.364 31.333 16S24.364.667 16 .667zm0 27.333c-2.486 0-4.917-.664-7.042-1.923l-.507-.3-4.187 1.327 1.368-4.08-.331-.528A12.272 12.272 0 0 1 3.733 16c0-6.8 5.534-12.267 12.267-12.267 6.733 0 12.267 5.467 12.267 12.267 0 6.733-5.534 12.267-12.267 12.267zm6.733-9.2c-.367-.183-2.18-1.08-2.52-1.2-.34-.123-.593-.183-.847.183-.247.367-.973 1.2-1.193 1.447-.22.247-.44.277-.807.093-.367-.183-1.547-.567-2.947-1.807-1.087-.967-1.82-2.16-2.04-2.527-.22-.367-.023-.567.16-.75.167-.167.367-.44.55-.66.183-.22.247-.367.367-.613.123-.247.06-.46-.027-.64-.093-.183-.847-2.04-1.16-2.787-.307-.74-.62-.64-.847-.653l-.72-.013c-.247 0-.653.093-1 .46-.34.367-1.307 1.28-1.307 3.12 0 1.84 1.34 3.613 1.527 3.867.187.247 2.64 4.04 6.4 5.667.893.387 1.587.62 2.127.793.893.283 1.707.243 2.353.147.72-.107 2.18-.893 2.487-1.753.307-.86.307-1.593.213-1.753-.093-.16-.34-.247-.707-.427z"/></svg>
+        </a>
+                </a>
+                
+                <a href="https://www.linkedin.com/in/dte-gpa-computer-het-thakkar-595a99374/" target="_blank" class="social-link linkedin" title="LinkedIn">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                </a>
+
+                <!-- View Certificate Button -->
+                <a href="het-certificate.pdf" class="certificate-btn" target="_blank">View Certificate</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function goToAboutUs() {
+            if (document.referrer) {
+                window.history.back();
+            } else {
+                window.location.href = 'about us.html';
+            }
+        }
+    </script>
+</body>
+</html>
